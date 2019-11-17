@@ -1,0 +1,31 @@
+{
+  "name": "bite-webVR",
+  "version": "1.0.0",
+  "description": "take a bite of WebVR",
+  "main": "./src/index.js",
+  "scripts": {
+    "start": "webpack-dev-server",
+    "build": "webpack",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/melogra/bite-webVR.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/melogra/bite-webVR/issues"
+  },
+  "homepage": "https://github.com/melogra/bite-webVR#readme",
+  "devDependencies": {
+    "html-webpack-plugin": "^3.2.0",
+    "webpack": "^4.41.2",
+    "webpack-cli": "^3.3.10",
+    "webpack-dev-server": "^3.9.0"
+  },
+  "dependencies": {
+    "three": "^0.110.0"
+  }
+}
