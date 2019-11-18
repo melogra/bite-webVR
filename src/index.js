@@ -5,10 +5,10 @@ import {
   PerspectiveCamera,
   MeshBasicMaterial,
   TextureLoader,
-  Clock,
   WebGLRenderer,
-  WebVRManager,
 } from 'three'
+
+import { WEBVR } from 'three/examples/jsm/vr/WebVR'
 
 let scene
 let camera
@@ -21,14 +21,12 @@ const images = [
 ]
 
 const container = document.getElementById('app')
-const clock = new Clock()
 
 function init() {
   scene = new Scene()
   camera = new PerspectiveCamera(70, window.innerWidth / window.innerHeight, 1, 1000)
   textureLoader = new TextureLoader()
 
-  // 图片选择器网格
   const viewerGeometry = new SphereGeometry(500, 40, 60)
   viewerGeometry.scale(-1, 1, 1)
   const viewerMaterial = new MeshBasicMaterial({
@@ -38,22 +36,23 @@ function init() {
   viewer.rotation.y = -Math.PI / 2
   scene.add(viewer)
 
-  // renderer
   renderer = new WebGLRenderer({ antialias: true })
   renderer.setPixelRatio(window.devicePixelRatio)
   renderer.setSize(window.innerWidth, window.innerHeight)
 
-  container.appendChild(renderer.domElement)
+  // webvr button
+  container.appendChild(WEBVR.createButton(renderer))
+  renderer.vr.enabled = true
 
+  container.appendChild(renderer.domElement)
   window.addEventListener('resize', onWindowResize, false)
 }
 
 function animate() {
-  let delta = clock.getDelta() * 60
 
   renderer.render(scene, camera)
 
-  window.requestAnimationFrame(animate)
+  // window.requestAnimationFrame(animate)
 }
 
 function onWindowResize() {
@@ -64,4 +63,5 @@ function onWindowResize() {
 }
 
 init()
-animate()
+// animate()
+renderer.setAnimationLoop(animate)
